@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canal PQRS y Procedimiento | Altas Verificaciones en Seguridad S.A.S</title>
+    <meta name="description" content="Canal oficial de Peticiones, Quejas, Reclamos y Sugerencias de Altas Verificaciones en Seguridad S.A.S. Conozca el procedimiento P004 R02 acreditado bajo NTC-ISO/IEC 17020:2012.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0B2447;
+            --secondary: #19376D;
+            --accent: #FF7A00;
+            --accent-hover: #e06c00;
+            --light: #F5F6F8;
+            --dark: #222222;
+            --white: #FFFFFF;
+            --whatsapp: #25D366;
+            --whatsapp-hover: #20ba5a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--dark); background-color: var(--light); line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--primary); }
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; }
+        .brand-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--primary); font-size: 1.05rem; line-height: 1.2; }
+        .logo-text span { color: var(--accent); font-size: 0.75rem; display: block; }
+        
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 30px; }
+        .section-title h2 { font-size: 2.2rem; position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; width: 60px; height: 3px; background: var(--accent); display: block; margin: 10px auto 0; border-radius: 2px; }
+        
+        .card { background: var(--white); padding: 35px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid var(--accent); margin-bottom: 40px; }
+        .procedure-box { background: #fff; padding: 35px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid var(--primary); margin-bottom: 40px; }
+        .procedure-box h3 { margin-top: 20px; margin-bottom: 10px; font-size: 1.2rem; color: var(--secondary); }
+        .procedure-box p, .procedure-box li { font-size: 0.95rem; color: #4a5568; margin-bottom: 10px; }
+        .procedure-box ul { padding-left: 20px; margin-bottom: 15px; }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--primary); font-size: 0.95rem; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 5px; font-family: 'Open Sans', sans-serif; font-size: 1rem; background-color: #f8fafc; }
+        .form-control:focus { outline: none; border-color: var(--accent); background-color: #fff; }
+        textarea.form-control { resize: vertical; height: 130px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .btn { display: inline-block; background: var(--accent); color: var(--white); padding: 12px 30px; border-radius: 5px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; text-align: center; width: 100%; }
+        .btn:hover { background: var(--accent-hover); }
+        .form-msg { display: none; padding: 14px; border-radius: 6px; margin-top: 18px; font-size: 0.95rem; }
+        .form-msg.ok { display: block; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .form-msg.err { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+        .hp { display: none !important; }
+
+        .scheme-img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 20px; }
+
+        footer { background: var(--primary); color: var(--white); text-align: center; padding: 30px; margin-top: 60px; }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand-container">
+                <div class="logo-text">ALTAS VERIFICACIONES EN SEGURIDAD<span>AV.S S.A.S | ISO/IEC 17020:2012</span></div>
+            </a>
+            <a href="index.html" class="btn" style="width: auto; padding: 8px 20px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Canal Oficial PQRS y Procedimiento</h2>
+        </div>
+
+        <!-- SECCIÓN DEL PROCEDIMIENTO (P004 R02) -->
+        <div class="procedure-box">
+            <h3><i class="fa-solid fa-book-open" style="color: var(--accent);"></i> Marco del Procedimiento: P004 R02 (Quejas y Apelaciones)</h3>
+            <p>Dando cumplimiento a la norma técnica <strong>NTC-ISO/IEC 17020:2012 (numerales 7.5 y 7.6)</strong>[cite: 6], ALTAS VERIFICACIONES EN SEGURIDAD S.A.S. establece los lineamientos para garantizar una respuesta transparente, objetiva e imparcial a cualquier manifestación de nuestros clientes o partes interesadas.</p>
+            
+            <h3>Principios Directrices</h3>
+            <ul>
+                <li><strong>Visibilidad y Accesibilidad:</strong> La información sobre cómo reclamar se encuentra abierta y disponible en nuestra web[cite: 6, 7].</li>
+                <li><strong>Gratuidad:</strong> El proceso de gestión de quejas y apelaciones es completamente gratuito para el reclamante[cite: 6, 7].</li>
+                <li><strong>Confidencialidad:</strong> El tratamiento protege estrictamente la identidad del reclamante[cite: 6, 7] y la reserva industrial.</li>
+                <li><strong>Imparcialidad y No Discriminación:</strong> Las investigaciones y decisiones son tomadas por personal que no participó en la inspección objeto de la queja[cite: 6]. Presentar una queja o apelación no afecta ni condiciona los servicios prestados[cite: 6, 7].</li>
+            </ul>
+
+            <h3>Pasos del Procedimiento</h3>
+            <ul>
+                <li><strong>1. Recepción y Acuse de Recibo:</strong> Recibida la queja por correo electrónico o este formulario, se asigna un número de seguimiento y se acusa recibo[cite: 6, 7].</li>
+                <li><strong>2. Confirmación (Plazo máx. 3 días hábiles):</strong> El Coordinador de Calidad verifica si la queja corresponde a actividades de inspección de nuestra responsabilidad[cite: 6]. Si aplica, pasa a investigación; de lo contrario, se notifica el cierre fundamentado[cite: 6].</li>
+                <li><strong>3. Validación e Investigación:</strong> El personal designado analiza objetivamente los hechos, la normatividad técnica y los registros probatorios[cite: 6].</li>
+                <li><strong>4. Decisión y Respuesta (Plazo máx. 15 días calendario):</strong> Se emite la respuesta formal detallando el avance y la solución adoptada[cite: 6, 7].</li>
+                <li><strong>5. Recursos (Reposición y Apelación):</strong> Contra la decisión proceden los recursos de reposición y apelación interpuestos por escrito dentro de los diez (10) días siguientes a su notificación[cite: 6].</li>
+            </ul>
+
+            <h3 style="text-align: center; margin-top: 30px;">Esquema del Proceso de Quejas y Apelaciones</h3>
+            <p style="text-align: center;">Consulte gráficamente el flujo de atención definido por el organismo:</p>
+            <!-- Imagen oficial integrada -->
+            <img src="Esquema_Quejas_y_Apelaciones_AVS (2).jpg" alt="Esquema de Quejas y Apelaciones AVS" class="scheme-img">
+        </div>
+
+        <!-- FORMULARIO PQRS -->
+        <div class="card">
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h2 style="font-size: 1.8rem;">Radique su PQRS</h2>
+            </div>
+            <p style="text-align: center; margin-bottom: 25px; color: #555;">Complete el formulario a continuación. Su solicitud será atendida conforme a los plazos establecidos en nuestro procedimiento de calidad.</p>
+
+            <form id="pqrsForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="b093da6c-1c7e-47c4-9979-85004b33d6b1">
+                <input type="hidden" name="subject" value="Nueva PQRS recibida - Altas Verificaciones en Seguridad">
+                <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="nombre">Nombre o Razón Social *</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Estación de Servicio El Libertador S.A.S.">
+                    </div>
+                    <div class="form-group">
+                        <label for="documento">NIT o Cédula *</label>
+                        <input type="text" id="documento" name="documento" class="form-control" required placeholder="Número de identificación">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico *</label>
+                        <input type="email" id="correo" name="email" class="form-control" required placeholder="contacto@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono de Contacto *</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Número de celular o fijo">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_pqrs">Tipo de Solicitud *</label>
+                    <select id="tipo_pqrs" name="tipo_pqrs" class="form-control" required>
+                        <option value="">Seleccione una opción...</option>
+                        <option value="Peticion">Petición</option>
+                        <option value="Queja">Queja</option>
+                        <option value="Reclamo">Reclamo</option>
+                        <option value="Sugerencia">Sugerencia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Descripción Detallada *</label>
+                    <textarea id="mensaje" name="message" class="form-control" required placeholder="Describa con claridad su solicitud, queja o apelación..."></textarea>
+                </div>
+
+                <label class="form-check" style="display: flex; gap: 10px; align-items: flex-start; font-size: 0.85rem; color: #4a5568; margin-bottom: 20px;">
+                    <input type="checkbox" name="autorizacion" required style="margin-top: 4px;">
+                    <span>Autorizo el tratamiento de mis datos personales para gestionar esta solicitud, conforme a la Ley 1581 de 2012.</span>
+                </label>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn" id="pqrsBtn" style="max-width: 320px;">Enviar PQRS</button>
+                </div>
+                <div id="pqrsMsg" class="form-msg" role="status" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD S.A.S. Todos los derechos reservados.</p>
+        <p>Organismo de Inspección Acreditado ONAC | Código 24-OIN-047 (ISO/IEC 17020:2012)</p>
+    </footer>
+
+    <script>
+        const pqrsForm = document.getElementById('pqrsForm');
+        const pqrsBtn = document.getElementById('pqrsBtn');
+        const pqrsMsg = document.getElementById('pqrsMsg');
+
+        pqrsForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            pqrsBtn.disabled = true;
+            pqrsBtn.textContent = 'Enviando...';
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(pqrsForm)
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (!data.success) throw new Error(data.message || 'error');
+                pqrsMsg.className = 'form-msg ok';
+                pqrsMsg.innerHTML = '<strong>Recibimos su solicitud correctamente.</strong> Le responderemos al correo y teléfono registrados conforme a los plazos establecidos.';
+                pqrsForm.reset();
+            })
+            .catch(function () {
+                pqrsMsg.className = 'form-msg err';
+                pqrsMsg.innerHTML = 'No pudimos enviar su solicitud. Intente de nuevo o escríbanos directamente a <a href="mailto:administrativo@avssas.com">administrativo@avssas.com</a>.';
+            })
+            .finally(function () {
+                pqrsBtn.disabled = false;
+                pqrsBtn.textContent = 'Enviar PQRS';
+            });
+        });
+    </script>
+</body>
+</html>
