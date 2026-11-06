@@ -305,8 +305,6 @@
     
         /* ==========================================
            ANIMACIONES AL HACER SCROLL
-           Las clases .rv las agrega el script solo si el navegador lo soporta
-           y la persona no pidió reducir animaciones; sin JS todo se ve normal.
            ========================================== */
         .scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 1100; pointer-events: none; }
 
@@ -317,10 +315,8 @@
         .rv-zoom { transform: scale(.94); }
         .rv.in { opacity: 1; transform: none; }
         .rv-instant, .rv-instant *, .rv-instant *::after { transition: none !important; }
-        /* Evita scroll horizontal mientras los bloques aún no entraron desde los lados */
         section[id] { overflow-x: clip; }
 
-        /* Detalles: la línea bajo los títulos "se dibuja" y los números de paso aparecen con rebote */
         .section-title.rv h2::after { width: 0; transition: width .8s ease calc(var(--rv-delay, 0ms) + 350ms); }
         .section-title.rv.in h2::after { width: 60px; }
         .step.rv .step-num { transform: scale(.4); transition: transform .6s cubic-bezier(.3,1.5,.5,1) calc(var(--rv-delay, 0ms) + 300ms); }
@@ -382,6 +378,27 @@
         </div>
     </div>
 
+    <!-- MODAL DE POLÍTICA DE PRIVACIDAD (Opción 2) -->
+    <div id="privacyModal" class="risk-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+        <div class="risk-modal-content" style="max-width: 750px;">
+            <button class="risk-modal-close" id="closePrivacyModal" aria-label="Cerrar ventana">&times;</button>
+            <div class="risk-modal-header" style="background: var(--primary);">
+                <i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i>
+                <h3 id="privacyTitle">Política de Privacidad y Tratamiento de Datos</h3>
+            </div>
+            <div class="risk-modal-body" style="text-align: left;">
+                <p style="text-align: left; margin-bottom: 15px;">En cumplimiento de la legislación colombiana vigente en materia de protección de datos personales (Ley Estatutaria 1581 de 2012 y Decreto 1377 de 2013), <strong>ALTAS VERIFICACIONES EN SEGURIDAD A.V.S. S.A.S.</strong> informa:</p>
+                <ul class="risk-list">
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--accent);"></i> <span><strong>Finalidad del recaudo:</strong> Los datos personales recogidos a través de este sitio web o canales de atención se utilizan exclusivamente para la gestión de solicitudes, cotizaciones y la ejecución de servicios de inspección técnica.</span></li>
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--accent);"></i> <span><strong>Confidencialidad y reserva:</strong> Toda la información técnica y personal de nuestros clientes se maneja bajo rigurosos estándares de estricta reserva industrial y no será comercializada con terceros.</span></li>
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--accent);"></i> <span><strong>Derechos (Habeas Data):</strong> El titular de la información tiene derecho a conocer, actualizar, rectificar y suprimir sus datos personales, así como a revocar la autorización otorgada comunicándose a nuestros canales oficiales.</span></li>
+                </ul>
+                <p class="risk-cta-text" style="text-align: center;">Para ejercer sus derechos o resolver dudas, contáctenos en <strong>administrativo@avssas.com</strong> o al <strong>+57 315 365 5177</strong>.</p>
+                <button class="btn risk-modal-btn" id="btnAcceptPrivacy" style="background: var(--primary);">Entendido</button>
+            </div>
+        </div>
+    </div>
+
     <!-- BOTÓN FLOTANTE ALTERNATIVO DE RIESGOS -->
     <button id="riskFloatingBtn" class="risk-floating-btn" title="Conozca los riesgos de no estar al día">
         <i class="fa-solid fa-shield-halved"></i>
@@ -408,6 +425,8 @@
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#pqrs" style="color: var(--accent);">Canal PQRS</a></li>
+                    <!-- Enlace integrado para abrir la ventana modal de Privacidad -->
+                    <li><a href="#" id="openPrivacyModal">Privacidad</a></li>
                     <li><a href="#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
                 </ul>
             </nav>
@@ -729,25 +748,6 @@
         </div>
     </section>
 
-    <!--
-    =====================================================================
-    PRUEBA SOCIAL (agregar SOLO con datos reales; luego quitar este comentario)
-    Es lo que más suele aumentar contactos. Ideas: logos de clientes
-    (con su permiso), testimonios con nombre y cargo, cantidad real de
-    estaciones inspeccionadas, años de experiencia.
-
-    <section id="clientes">
-        <div class="section-title"><h2>Empresas que confían en nosotros</h2></div>
-        <div class="grid-3">
-            <div class="card">
-                <p>"Texto real del testimonio."</p>
-                <p><strong>Nombre del cliente</strong><br>Cargo, Estación / Empresa</p>
-            </div>
-        </div>
-    </section>
-    =====================================================================
-    -->
-
     <section id="faq">
         <div class="section-title">
             <h2>Preguntas Frecuentes</h2>
@@ -829,459 +829,4 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="faq-answer">
-                    <p>Escríbanos por WhatsApp o use el <a class="link-accent" href="#cotizar">formulario de cotización</a>. Con el tipo de estación, la ciudad, el número de tanques y su capacidad aproximada podemos orientarle de inmediato.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE FORMULARIO (PQRS) -->
-    <section id="pqrs">
-        <div class="section-title">
-            <h2>Canal PQRS</h2>
-        </div>
-        <div class="form-container">
-            <p style="text-align: center; margin-bottom: 30px; color: #555;">Dando cumplimiento a los requisitos de la norma ISO/IEC 17020:2012, ponemos a su disposición este canal oficial para Peticiones, Quejas, Reclamos y Sugerencias.</p>
-
-            <form id="pqrsForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="b093da6c-1c7e-47c4-9979-85004b33d6b1">
-                <input type="hidden" name="subject" value="Nueva PQRS recibida - Altas Verificaciones en Seguridad">
-                <input type="hidden" name="redirect" value="https://web3forms.com/success">
-                <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
-
-                <div class="grid-2" style="gap: 20px;">
-                    <div class="form-group">
-                        <label for="nombre">Nombre o Razón Social *</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Estación de Servicio El Libertador S.A.S.">
-                    </div>
-                    <div class="form-group">
-                        <label for="documento">NIT o Cédula *</label>
-                        <input type="text" id="documento" name="documento" class="form-control" required placeholder="Número de identificación">
-                    </div>
-                </div>
-
-                <div class="grid-2" style="gap: 20px;">
-                    <div class="form-group">
-                        <label for="correo">Correo Electrónico *</label>
-                        <input type="email" id="correo" name="email" class="form-control" required placeholder="contacto@ejemplo.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono de Contacto *</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Número de celular o fijo">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipo_pqrs">Tipo de Solicitud *</label>
-                    <select id="tipo_pqrs" name="tipo_pqrs" class="form-control" required>
-                        <option value="">Seleccione una opción...</option>
-                        <option value="Peticion">Petición</option>
-                        <option value="Queja">Queja</option>
-                        <option value="Reclamo">Reclamo</option>
-                        <option value="Sugerencia">Sugerencia</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensaje">Descripción Detallada *</label>
-                    <textarea id="mensaje" name="message" class="form-control" required placeholder="Describa con claridad su solicitud..."></textarea>
-                </div>
-
-                <label class="form-check">
-                    <input type="checkbox" name="autorizacion" required>
-                    <span>Autorizo el tratamiento de mis datos personales para gestionar esta solicitud, conforme a la Ley 1581 de 2012.</span>
-                </label>
-
-                <div style="text-align: center; margin-top: 10px;">
-                    <button type="submit" class="btn" id="pqrsBtn" style="width: 100%; max-width: 320px;">Enviar PQRS</button>
-                </div>
-                <div id="pqrsMsg" class="form-msg" role="status" aria-live="polite"></div>
-            </form>
-        </div>
-    </section>
-
-    <section id="contacto">
-        <div class="section-title">
-            <h2>Contacto</h2>
-        </div>
-        <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <h3>Estamos listos para atender sus requerimientos con total respaldo técnico</h3>
-            <p style="margin-bottom: 20px;">Especialistas en Pruebas de hermeticidad para tanques y tuberías e Inspección para Estaciones de Servicio Automotriz bajo la Resolución 40198 de 2021.</p>
-            <p style="margin-bottom: 20px;">
-                <a href="https://api.whatsapp.com/send?phone=573153655177&text=Hola,%20requiero%20información%20sobre%20inspecciones" class="btn btn-wa" target="_blank" rel="noopener" data-cta="contact-wa">
-                    <i class="fa-brands fa-whatsapp"></i> Escribirnos por WhatsApp
-                </a>
-            </p>
-            <p><strong>Teléfono / WhatsApp:</strong> <a href="tel:+573153655177" style="color: var(--primary); font-weight: 600; text-decoration: none;" data-cta="contact-call"><i class="fa-solid fa-phone"></i> +57 3153655177</a></p>
-            <p style="margin-top: 10px;"><strong>Correo electrónico:</strong> <a href="mailto:administrativo@avssas.com" style="color: var(--primary); font-weight: 600; text-decoration: none;" data-cta="contact-mail">administrativo@avssas.com</a></p>
-            <p style="margin-top: 15px;"><strong>Organismo de Inspección Acreditado ONAC - Código 24-OIN-047 (ISO/IEC 17020:2012)</strong></p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-links">
-            <a href="#servicios">Servicios</a>
-            <a href="#acreditacion">Acreditación</a>
-            <a href="#faq">Preguntas frecuentes</a>
-            <a href="#cotizar">Cotizar</a>
-            <a href="#pqrs">PQRS</a>
-            <a href="privacidad.html" target="_blank">Política de Privacidad</a>
-        </div>
-        <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD S.A.S. Todos los derechos reservados.</p>
-        <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047</p>
-    </footer>
-
-    <!-- Scripts Interactivos -->
-    <script>
-        (function () {
-            'use strict';
-
-            const WA_NUMBER = '573153655177';
-            const WEB3_URL = 'https://api.web3forms.com/submit';
-            const WEB3_KEY = 'b093da6c-1c7e-47c4-9979-85004b33d6b1';
-
-            function waLink(text) {
-                return 'https://api.whatsapp.com/send?phone=' + WA_NUMBER + '&text=' + encodeURIComponent(text);
-            }
-
-            function showMsg(el, type, html) {
-                el.className = 'form-msg ' + type;
-                el.innerHTML = html;
-            }
-
-            // ---------- Medición de clics (se activa si hay Google Analytics o Meta Pixel) ----------
-            document.addEventListener('click', function (e) {
-                const el = e.target.closest('[data-cta]');
-                if (!el) return;
-                try {
-                    if (typeof window.gtag === 'function') window.gtag('event', 'cta_click', { cta: el.dataset.cta });
-                    if (typeof window.fbq === 'function') window.fbq('trackCustom', 'CTAClick', { cta: el.dataset.cta });
-                } catch (err) { /* sin medición */ }
-            });
-
-            // ---------- Menú móvil ----------
-            const menuBtn = document.getElementById('menu-btn');
-            const navLinks = document.getElementById('nav-links');
-            menuBtn.addEventListener('click', function () {
-                const open = navLinks.classList.toggle('active');
-                menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-            });
-            document.querySelectorAll('nav ul li a').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    navLinks.classList.remove('active');
-                    menuBtn.setAttribute('aria-expanded', 'false');
-                });
-            });
-
-            // ---------- Acordeón FAQ ----------
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            faqQuestions.forEach(function (question) {
-                question.addEventListener('click', function () {
-                    const answer = question.nextElementSibling;
-                    const open = question.classList.toggle('active');
-                    answer.classList.toggle('show', open);
-                    question.setAttribute('aria-expanded', open ? 'true' : 'false');
-                    answer.style.maxHeight = open ? (answer.scrollHeight + 60) + 'px' : '';
-                });
-            });
-            window.addEventListener('resize', function () {
-                document.querySelectorAll('.faq-answer.show').forEach(function (a) {
-                    a.style.maxHeight = (a.scrollHeight + 60) + 'px';
-                });
-            });
-
-            // ---------- Modal de riesgos (menos intrusivo) ----------
-            // Se muestra una sola vez por visita: al llegar a ~45% de la página,
-            // al intentar salir (escritorio) o tras 40 segundos. No interrumpe si el usuario está escribiendo.
-            const riskModal = document.getElementById('riskModal');
-            const closeRiskModal = document.getElementById('closeRiskModal');
-            const riskFloatingBtn = document.getElementById('riskFloatingBtn');
-            const SEEN_KEY = 'avs_risk_seen';
-            let lastFocus = null;
-            let autoShown = false;
-
-            function alreadySeen() {
-                try { return sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) { return false; }
-            }
-            function markSeen() {
-                try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) { /* sin almacenamiento */ }
-            }
-            function openRisk() {
-                if (riskModal.classList.contains('active')) return;
-                lastFocus = document.activeElement;
-                riskModal.classList.add('active');
-                riskFloatingBtn.classList.remove('show');
-                document.body.style.overflow = 'hidden';
-                markSeen();
-                setTimeout(function () { closeRiskModal.focus(); }, 50);
-            }
-            function closeRisk() {
-                riskModal.classList.remove('active');
-                document.body.style.overflow = '';
-                setTimeout(function () { riskFloatingBtn.classList.add('show'); }, 500);
-                if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
-            }
-            function autoOpenRisk() {
-                if (autoShown || alreadySeen()) return;
-                const a = document.activeElement;
-                if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return; // no interrumpir un formulario
-                autoShown = true;
-                openRisk();
-            }
-
-            window.addEventListener('scroll', function () {
-                const total = document.documentElement.scrollHeight - window.innerHeight;
-                if (total > 0 && window.scrollY / total > 0.45) autoOpenRisk();
-            }, { passive: true });
-            document.addEventListener('mouseout', function (e) {
-                if (!e.relatedTarget && e.clientY <= 0) autoOpenRisk();
-            });
-            setTimeout(autoOpenRisk, 40000);
-
-            closeRiskModal.addEventListener('click', closeRisk);
-            riskModal.addEventListener('click', function (e) { if (e.target === riskModal) closeRisk(); });
-            document.getElementById('riskDiagLink').addEventListener('click', closeRisk);
-            riskFloatingBtn.addEventListener('click', openRisk);
-            document.addEventListener('keydown', function (e) {
-                if (!riskModal.classList.contains('active')) return;
-                if (e.key === 'Escape') { closeRisk(); return; }
-                if (e.key === 'Tab') { // mantener el foco dentro del modal
-                    const f = riskModal.querySelectorAll('a[href], button');
-                    if (!f.length) return;
-                    const first = f[0], last = f[f.length - 1];
-                    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-                    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-                }
-            });
-
-            // ---------- Autodiagnóstico ----------
-            const diagForm = document.getElementById('diagForm');
-            const diagResult = document.getElementById('diagResult');
-            const LABELS = { si: 'Sí', no: 'No', ns: 'No sé' };
-
-            diagForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                let flags = 0, missing = false;
-                const resumen = [];
-                diagForm.querySelectorAll('.diag-q').forEach(function (q) {
-                    const sel = q.querySelector('input:checked');
-                    if (!sel) { missing = true; q.classList.add('missing'); return; }
-                    q.classList.remove('missing');
-                    if (q.dataset.flag.split(',').indexOf(sel.value) !== -1) flags++;
-                    resumen.push('- ' + q.dataset.short + ': ' + LABELS[sel.value]);
-                });
-                diagResult.className = 'diag-result show';
-                if (missing) {
-                    diagResult.innerHTML = '<p style="margin:0;">Por favor responda las 4 preguntas para ver su resultado.</p>';
-                    return;
-                }
-                const msg = 'Hola, hice el autodiagnóstico en su página.\nResultado: ' +
-                    (flags ? flags + (flags === 1 ? ' punto por revisar' : ' puntos por revisar') : 'sin puntos por revisar') +
-                    '.\n' + resumen.join('\n') + '\nQuisiera una evaluación previa de mi estación.';
-                if (flags === 0) {
-                    diagResult.className = 'diag-result show ok';
-                    diagResult.innerHTML =
-                        '<h3><i class="fa-solid fa-circle-check" style="color:#16a34a;"></i> Buen punto de partida</h3>' +
-                        '<p>Todo parece en orden, pero conviene confirmarlo con una evaluación previa antes de la inspección. Si tiene dudas, le ayudamos.</p>';
-                } else {
-                    diagResult.innerHTML =
-                        '<h3><i class="fa-solid fa-triangle-exclamation" style="color:var(--accent);"></i> Hay ' + flags + (flags === 1 ? ' punto' : ' puntos') + ' por revisar</h3>' +
-                        '<p>Una evaluación previa con lista de chequeo normativa permite identificar qué falta antes de la inspección. Escríbanos y le orientamos.</p>';
-                }
-                diagResult.innerHTML +=
-                    '<a class="btn btn-wa" target="_blank" rel="noopener" data-cta="diag-result-wa" href="' + waLink(msg) + '"><i class="fa-brands fa-whatsapp"></i> Pedir mi evaluación por WhatsApp</a>' +
-                    '<small>Este autodiagnóstico es orientativo y no reemplaza una inspección acreditada.</small>';
-                diagResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-
-            // ---------- Cotización rápida (abre WhatsApp y envía copia por correo) ----------
-            const quoteForm = document.getElementById('quoteForm');
-            const quoteMsg = document.getElementById('quoteMsg');
-
-            quoteForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const d = Object.fromEntries(new FormData(quoteForm).entries());
-                if (d.botcheck) return; // anti-spam
-
-                const lines = [
-                    'Hola, quiero una cotización con Altas Verificaciones en Seguridad.',
-                    'Nombre: ' + d.nombre,
-                    d.empresa ? 'Estación / empresa: ' + d.empresa : null,
-                    'Ciudad: ' + d.ciudad,
-                    'Servicio: ' + d.servicio,
-                    d.tanques ? 'Tanques / capacidad: ' + d.tanques : null,
-                    'Mi teléfono: ' + d.telefono
-                ].filter(Boolean);
-                const url = waLink(lines.join('\n'));
-
-                // Abrir WhatsApp dentro del gesto del usuario (evita bloqueo de ventanas emergentes)
-                window.open(url, '_blank', 'noopener');
-
-                // Copia de respaldo por correo para no perder el contacto
-                fetch(WEB3_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({
-                        access_key: WEB3_KEY,
-                        subject: 'Nueva solicitud de cotización - Altas Verificaciones en Seguridad',
-                        from_name: d.nombre,
-                        nombre: d.nombre,
-                        telefono: d.telefono,
-                        empresa: d.empresa || '',
-                        ciudad: d.ciudad,
-                        servicio: d.servicio,
-                        tanques: d.tanques || ''
-                    })
-                }).catch(function () { /* el contacto principal es WhatsApp */ });
-
-                showMsg(quoteMsg, 'ok',
-                    '<strong>¡Gracias, ' + d.nombre.replace(/</g, '&lt;') + '!</strong> Se abrió WhatsApp con su solicitud; solo falta enviarla. ' +
-                    'Si no se abrió, <a href="' + url + '" target="_blank" rel="noopener">haga clic aquí</a>.');
-                quoteForm.reset();
-            });
-
-            // ---------- PQRS (envío sin salir de la página) ----------
-            const pqrsForm = document.getElementById('pqrsForm');
-            const pqrsBtn = document.getElementById('pqrsBtn');
-            const pqrsMsg = document.getElementById('pqrsMsg');
-
-            pqrsForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                pqrsBtn.disabled = true;
-                pqrsBtn.textContent = 'Enviando...';
-                fetch(WEB3_URL, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: new FormData(pqrsForm)
-                })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    if (!data.success) throw new Error(data.message || 'error');
-                    showMsg(pqrsMsg, 'ok', '<strong>Recibimos su solicitud.</strong> Le responderemos al correo y teléfono registrados.');
-                    pqrsForm.reset();
-                })
-                .catch(function () {
-                    showMsg(pqrsMsg, 'err', 'No pudimos enviar su solicitud. Intente de nuevo o escríbanos a <a href="mailto:administrativo@avssas.com">administrativo@avssas.com</a>.');
-                })
-                .finally(function () {
-                    pqrsBtn.disabled = false;
-                    pqrsBtn.textContent = 'Enviar PQRS';
-                });
-            });
-        })();
-    </script>
-
-
-    <!-- Animaciones de aparición al hacer scroll -->
-    <script>
-        (function () {
-            'use strict';
-
-            const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            // ---------- Barra de progreso de lectura ----------
-            const bar = document.getElementById('scrollProgress');
-            if (bar && !reduce) {
-                let ticking = false;
-                const updateBar = function () {
-                    const total = document.documentElement.scrollHeight - window.innerHeight;
-                    const p = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
-                    bar.style.transform = 'scaleX(' + p + ')';
-                    ticking = false;
-                };
-                window.addEventListener('scroll', function () {
-                    if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
-                }, { passive: true });
-                window.addEventListener('resize', updateBar);
-                updateBar();
-            }
-
-            // ---------- Aparición de secciones ----------
-            if (reduce || !('IntersectionObserver' in window)) return;
-
-            // [selector, animación]  ->  up | left | right | zoom | fade
-            // Para animar algo nuevo basta con agregarle data-reveal="up" (o left, right, zoom, fade) en el HTML.
-            const TARGETS = [
-                // Portada (entra al cargar)
-                ['.hero .badge-onac', 'up'],
-                ['.hero h1', 'up'],
-                ['.hero > p', 'up'],
-                ['.hero-actions', 'up'],
-                ['.trust-strip', 'up'],
-                // Títulos de sección
-                ['.section-title', 'up'],
-                // Quiénes somos
-                ['#quienes-somos .grid-2 > div:first-child', 'left'],
-                ['#quienes-somos .grid-2 > .card', 'right'],
-                // Acreditación
-                ['#acreditacion .grid-3 > .card', 'up'],
-                ['#acreditacion > p', 'up'],
-                // Por qué elegirnos
-                ['.why-item', 'up'],
-                // Servicios
-                ['#servicios .grid-3 > .card', 'up'],
-                // Proceso
-                ['.step', 'up'],
-                ['#proceso > p', 'up'],
-                // Autodiagnóstico
-                ['.diag-card', 'zoom'],
-                // Cotización
-                ['#cotizar .grid-2 > .card', 'left'],
-                ['#cotizar .form-container', 'right'],
-                // FAQ
-                ['.faq-item', 'up'],
-                // PQRS y contacto
-                ['#pqrs .form-container', 'up'],
-                ['#contacto .card', 'zoom'],
-                // Pie de página
-                ['footer', 'fade']
-            ];
-
-            const seen = new Set();
-            const els = [];
-            function tag(el, kind) {
-                if (seen.has(el)) return;
-                seen.add(el);
-                el.classList.add('rv', 'rv-' + kind);
-                els.push(el);
-            }
-
-            try {
-                TARGETS.forEach(function (t) {
-                    document.querySelectorAll(t[0]).forEach(function (el) { tag(el, t[1]); });
-                });
-                document.querySelectorAll('[data-reveal]').forEach(function (el) {
-                    tag(el, el.getAttribute('data-reveal') || 'up');
-                });
-
-                const io = new IntersectionObserver(function (entries) {
-                    let n = 0; // los elementos que entran a la vez aparecen escalonados
-                    entries.forEach(function (entry) {
-                        const el = entry.target;
-                        if (entry.isIntersecting) {
-                            el.style.setProperty('--rv-delay', (Math.min(n, 6) * 90) + 'ms');
-                            n++;
-                            el.classList.add('in');
-                        } else if (entry.boundingClientRect.top < 0) {
-                            // Ya quedó por encima de la pantalla (recarga a mitad de página o salto por ancla): mostrar sin animar
-                            el.classList.add('rv-instant', 'in');
-                            requestAnimationFrame(function () {
-                                requestAnimationFrame(function () { el.classList.remove('rv-instant'); });
-                            });
-                        } else {
-                            return;
-                        }
-                        io.unobserve(el);
-                    });
-                }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-
-                els.forEach(function (el) { io.observe(el); });
-            } catch (err) {
-                // Si algo falla, nada queda oculto
-                els.forEach(function (el) { el.classList.remove('rv', 'rv-up', 'rv-left', 'rv-right', 'rv-zoom', 'rv-fade'); });
-            }
-        })();
-    </script>
-
-</body>
-</html>
+                    <p>Escríbanos por WhatsApp o use el <a class="link-accent" href="#cotizar">formulario de cotización
