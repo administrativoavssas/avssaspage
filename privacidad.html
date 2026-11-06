@@ -144,4 +144,135 @@
                 <img src="logo.png" alt="Logo Altas Verificaciones en Seguridad" class="logo-img" onerror="this.style.display='none'">
                 <div class="logo-text">
                     ALTAS VERIFICACIONES EN SEGURIDAD
-                    <span>AV.S S.A
+                    <span>AV.S S.A.S | ISO/IEC 17020:2012</span>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="index.html#acreditacion">Acreditación ONAC</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="pqrs.html" target="_blank" rel="noopener noreferrer">PQRS</a></li>
+                    <li><a href="MisionVision.html">Misión/Visión</a></li>
+                    <li><a href="index.html#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Volver a la página principal</a>
+
+        <div class="section-title">
+            <h1>ALTAS VERIFICACIONES EN SEGURIDAD A.V.S. S.A.S.</h1>
+        </div>
+        <p class="subtitle-privacy">Declaración de Privacidad y Tratamiento de Datos Personales</p>
+
+        <section class="privacy-card" data-reveal="up">
+            <h2><i class="fa-solid fa-scale-balanced" style="color: var(--accent);"></i> 1. Introducción y Marco Legal</h2>
+            <p>En cumplimiento de la legislación colombiana vigente en materia de protección de datos personales (Ley Estatutaria 1581 de 2012, Decreto 1377 de 2013 y demás normas concordantes), <strong>ALTAS VERIFICACIONES EN SEGURIDAD A.V.S. S.A.S.</strong> presenta su Política de Privacidad, informando a clientes, proveedores y visitantes sobre la recolección y uso de su información.</p>
+        </section>
+
+        <section class="privacy-card" data-reveal="up">
+            <h2><i class="fa-solid fa-bullseye" style="color: var(--accent);"></i> 2. Finalidad del Recaudo de Datos</h2>
+            <p>La información recabada a través de este sitio web y canales oficiales se utiliza estrictamente para:</p>
+            <ul>
+                <li>Atención de solicitudes, cotizaciones y soporte técnico.</li>
+                <li>Ejecución de servicios de inspección, pruebas y emisión de informes técnicos.</li>
+                <li>Seguridad de la plataforma y prevención de amenazas informáticas.</li>
+                <li>Cumplimiento de obligaciones legales y requerimientos de autoridades competentes.</li>
+            </ul>
+        </section>
+
+        <section class="privacy-card" data-reveal="up">
+            <h2><i class="fa-solid fa-user-shield" style="color: var(--accent);"></i> 3. Confidencialidad y Reserva Industrial</h2>
+            <p>Toda la información técnica relativa a clientes, resultados de pruebas, ensayos y procedimientos operativos se maneja bajo rigurosos estándares de estricta reserva. Sus datos no serán comercializados ni compartidos con terceros sin autorización explícita, salvo mandato legal.</p>
+        </section>
+
+        <section class="privacy-card" data-reveal="up">
+            <h2><i class="fa-solid fa-gavel" style="color: var(--accent);"></i> 4. Derechos de los Titulares (Habeas Data)</h2>
+            <p>Como titular, usted tiene derecho a conocer, actualizar, rectificar y suprimir sus datos personales, así como a revocar la autorización otorgada o presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</p>
+        </section>
+
+        <section class="privacy-card" data-reveal="up">
+            <h2><i class="fa-solid fa-headset" style="color: var(--accent);"></i> 5. Atención de Solicitudes</h2>
+            <p>Para ejercer sus derechos de Habeas Data o realizar consultas, puede comunicarse a través de nuestros canales de atención oficiales o mediante el enlace de contacto directo de la empresa.</p>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA UNIFICADO -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#acreditacion">Acreditación</a>
+            <a href="index.html#faq">Preguntas frecuentes</a>
+            <a href="index.html#cotizar">Cotizar</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="privacidad.html" style="color: var(--accent);">Política de Privacidad</a>
+        </div>
+        <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD A.V.S. S.A.S. Todos los derechos reservados.</p>
+        <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047</p>
+    </footer>
+
+    <!-- SCRIPTS INTERACTIVOS ORIGINALES -->
+    <script>
+        (function () {
+            'use strict';
+
+            // Menú Móvil (Hamburguesa)
+            const menuBtn = document.getElementById('menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            menuBtn.addEventListener('click', function () {
+                const open = navLinks.classList.toggle('active');
+                menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.querySelectorAll('nav ul li a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    navLinks.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Animaciones y Barra de progreso
+            const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const bar = document.getElementById('scrollProgress');
+            
+            if (bar && !reduce) {
+                let ticking = false;
+                const updateBar = function () {
+                    const total = document.documentElement.scrollHeight - window.innerHeight;
+                    const p = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+                    bar.style.transform = 'scaleX(' + p + ')';
+                    ticking = false;
+                };
+                window.addEventListener('scroll', function () {
+                    if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
+                }, { passive: true });
+                updateBar();
+            }
+
+            if (reduce || !('IntersectionObserver' in window)) return;
+
+            const targets = document.querySelectorAll('[data-reveal]');
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const kind = el.getAttribute('data-reveal') || 'up';
+                        el.classList.add('rv', 'rv-' + kind, 'in');
+                        io.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            targets.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>
