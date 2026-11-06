@@ -201,7 +201,7 @@
         .footer-links a:hover { color: var(--accent); }
 
         /* ==========================================
-           MODAL DE RIESGOS
+           MODAL DE RIESGOS Y PRIVACIDAD
            ========================================== */
         .risk-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 36, 71, 0.85); backdrop-filter: blur(4px); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; padding: 15px; overflow-y: auto; }
         .risk-modal-overlay.active { opacity: 1; visibility: visible; }
@@ -220,8 +220,6 @@
         .risk-list li strong { color: var(--primary); }
         .risk-cta-text { background: #fff7ed; border-left: 4px solid var(--accent); padding: 15px; border-radius: 4px; font-size: 0.95rem; color: var(--primary); margin-bottom: 20px; text-align: center; line-height: 1.5; }
         .risk-modal-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3); }
-        .risk-modal-btn-alt { background: transparent; color: var(--primary); border: 2px solid var(--primary); box-shadow: none; margin-top: 10px; padding: 11px; font-size: 0.98rem; }
-        .risk-modal-btn-alt:hover { background: var(--primary); color: #fff; }
 
         /* Botón Flotante de Riesgos */
         .risk-floating-btn { position: fixed; bottom: 100px; left: 20px; background: var(--primary); color: var(--white); border: 2px solid var(--accent); border-radius: 50px; padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 99; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; opacity: 0; visibility: hidden; transform: translateX(-20px); }
@@ -371,14 +369,14 @@
                 <a href="https://api.whatsapp.com/send?phone=573153655177&text=Hola,%20quiero%20evitar%20riesgos%20y%20solicitar%20una%20inspección%20de%20mi%20Estación%20de%20Servicio" class="btn btn-wa risk-modal-btn" target="_blank" rel="noopener" data-cta="modal-wa">
                     <i class="fa-brands fa-whatsapp"></i> Solicitar Inspección Ahora
                 </a>
-                <a href="#autodiagnostico" class="btn risk-modal-btn risk-modal-btn-alt" id="riskDiagLink" data-cta="modal-diag">
+                <a href="#autodiagnostico" class="btn risk-modal-btn risk-modal-btn-alt" id="riskDiagLink" data-cta="modal-diag" style="background:transparent; color:var(--primary); border:2px solid var(--primary); box-shadow:none; margin-top:10px;">
                     Hacer el autodiagnóstico (1 minuto)
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE POLÍTICA DE PRIVACIDAD (Opción 2) -->
+    <!-- MODAL DE POLÍTICA DE PRIVACIDAD (Se abre desde el menú superior) -->
     <div id="privacyModal" class="risk-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
         <div class="risk-modal-content" style="max-width: 750px;">
             <button class="risk-modal-close" id="closePrivacyModal" aria-label="Cerrar ventana">&times;</button>
@@ -425,7 +423,7 @@
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#pqrs" style="color: var(--accent);">Canal PQRS</a></li>
-                    <!-- Enlace integrado para abrir la ventana modal de Privacidad -->
+                    <!-- Menú superior: Abre el pop-up/modal interno -->
                     <li><a href="#" id="openPrivacyModal">Privacidad</a></li>
                     <li><a href="#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
                 </ul>
@@ -925,8 +923,8 @@
             <a href="#faq">Preguntas frecuentes</a>
             <a href="#cotizar">Cotizar</a>
             <a href="#pqrs">PQRS</a>
-            <!-- Enlace en el pie de página para abrir la ventana modal -->
-            <a href="#" id="openPrivacyModalFooter">Política de Privacidad</a>
+            <!-- Footer: Se abre en una NUEVA PESTAÑA apuntando a privacidad.html -->
+            <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
         </div>
         <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD S.A.S. Todos los derechos reservados.</p>
         <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047</p>
@@ -950,10 +948,9 @@
                 el.innerHTML = html;
             }
 
-            // ---------- Control del Modal de Privacidad ----------
+            // ---------- Control del Modal Superior (Privacidad) ----------
             const privacyModal = document.getElementById('privacyModal');
             const openPrivacyModal = document.getElementById('openPrivacyModal');
-            const openPrivacyModalFooter = document.getElementById('openPrivacyModalFooter');
             const closePrivacyModal = document.getElementById('closePrivacyModal');
             const btnAcceptPrivacy = document.getElementById('btnAcceptPrivacy');
 
@@ -973,7 +970,6 @@
             }
 
             if (openPrivacyModal) openPrivacyModal.addEventListener('click', openPrivacy);
-            if (openPrivacyModalFooter) openPrivacyModalFooter.addEventListener('click', openPrivacy);
             if (closePrivacyModal) closePrivacyModal.addEventListener('click', closePrivacy);
             if (btnAcceptPrivacy) btnAcceptPrivacy.addEventListener('click', closePrivacy);
             if (privacyModal) {
@@ -1001,7 +997,6 @@
             });
             document.querySelectorAll('nav ul li a').forEach(function (link) {
                 link.addEventListener('click', function () {
-                    // Si el enlace es para abrir el modal de privacidad, no cerrar el menú bruscamente antes de abrir
                     if (link.id === 'openPrivacyModal') return;
                     navLinks.classList.remove('active');
                     menuBtn.setAttribute('aria-expanded', 'false');
