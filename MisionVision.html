@@ -71,17 +71,21 @@
 <body>
 
     <!-- ENCABEZADO CON LOGO Y NAVEGACIÓN COMPLETA -->
-    <header>
+ <header>
         <div class="nav-container">
-             <a href="#inicio" class="brand-container">
+            <a href="#inicio" class="brand-container">
                 <img src="logo.png" alt="Logo Altas Verificaciones en Seguridad" class="logo-img" onerror="this.style.display='none'">
                 <div class="logo-text">
                     ALTAS VERIFICACIONES EN SEGURIDAD
                     <span>AV.S S.A.S | ISO/IEC 17020:2012</span>
                 </div>
             </a>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Inicio</a></li>
+            <button class="menu-toggle" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#quienes-somos">Quiénes Somos</a></li>
                     <li><a href="#acreditacion">Acreditación ONAC</a></li>
                     <li><a href="#servicios">Servicios</a></li>
@@ -91,8 +95,8 @@
                     <li><a href="MisionVision.html" target="_blank" rel="noopener noreferrer" >Misión/Visión</a></li>
                     <li><a href="#" id="openPrivacyModal">Privacidad</a></li>
                     <li><a href="#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
-                <li><a href="index.html" class="btn" style="padding: 8px 18px; font-size: 0.9rem;"><i class="fa-solid fa-arrow-left"></i> Volver al Inicio</a></li>
-            </ul>
+                </ul>
+            </nav>
         </div>
     </header>
 
