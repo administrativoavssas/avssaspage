@@ -422,8 +422,8 @@
                     <li><a href="#acreditacion">Acreditación ONAC</a></li>
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#pqrs" style="color: var(--accent);">Canal PQRS</a></li>
-                    <!-- Menú superior: Abre el pop-up/modal interno -->
+                    <!-- Enlace superior al Canal PQRS abriéndose en pestaña aparte -->
+                    <li><a href="pqrs.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Canal PQRS</a></li>
                     <li><a href="#" id="openPrivacyModal">Privacidad</a></li>
                     <li><a href="#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
                 </ul>
@@ -833,71 +833,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE FORMULARIO (PQRS) -->
-    <section id="pqrs">
-        <div class="section-title">
-            <h2>Canal PQRS</h2>
-        </div>
-        <div class="form-container">
-            <p style="text-align: center; margin-bottom: 30px; color: #555;">Dando cumplimiento a los requisitos de la norma ISO/IEC 17020:2012, ponemos a su disposición este canal oficial para Peticiones, Quejas, Reclamos y Sugerencias.</p>
-
-            <form id="pqrsForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="b093da6c-1c7e-47c4-9979-85004b33d6b1">
-                <input type="hidden" name="subject" value="Nueva PQRS recibida - Altas Verificaciones en Seguridad">
-                <input type="hidden" name="redirect" value="https://web3forms.com/success">
-                <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
-
-                <div class="grid-2" style="gap: 20px;">
-                    <div class="form-group">
-                        <label for="nombre">Nombre o Razón Social *</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Estación de Servicio El Libertador S.A.S.">
-                    </div>
-                    <div class="form-group">
-                        <label for="documento">NIT o Cédula *</label>
-                        <input type="text" id="documento" name="documento" class="form-control" required placeholder="Número de identificación">
-                    </div>
-                </div>
-
-                <div class="grid-2" style="gap: 20px;">
-                    <div class="form-group">
-                        <label for="correo">Correo Electrónico *</label>
-                        <input type="email" id="correo" name="email" class="form-control" required placeholder="contacto@ejemplo.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono de Contacto *</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" required placeholder="Número de celular o fijo">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipo_pqrs">Tipo de Solicitud *</label>
-                    <select id="tipo_pqrs" name="tipo_pqrs" class="form-control" required>
-                        <option value="">Seleccione una opción...</option>
-                        <option value="Peticion">Petición</option>
-                        <option value="Queja">Queja</option>
-                        <option value="Reclamo">Reclamo</option>
-                        <option value="Sugerencia">Sugerencia</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensaje">Descripción Detallada *</label>
-                    <textarea id="mensaje" name="message" class="form-control" required placeholder="Describa con claridad su solicitud..."></textarea>
-                </div>
-
-                <label class="form-check">
-                    <input type="checkbox" name="autorizacion" required>
-                    <span>Autorizo el tratamiento de mis datos personales para gestionar esta solicitud, conforme a la Ley 1581 de 2012.</span>
-                </label>
-
-                <div style="text-align: center; margin-top: 10px;">
-                    <button type="submit" class="btn" id="pqrsBtn" style="width: 100%; max-width: 320px;">Enviar PQRS</button>
-                </div>
-                <div id="pqrsMsg" class="form-msg" role="status" aria-live="polite"></div>
-            </form>
-        </div>
-    </section>
-
     <section id="contacto">
         <div class="section-title">
             <h2>Contacto</h2>
@@ -922,9 +857,9 @@
             <a href="#acreditacion">Acreditación</a>
             <a href="#faq">Preguntas frecuentes</a>
             <a href="#cotizar">Cotizar</a>
-            <a href="#pqrs">PQRS</a>
-            <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
+            <!-- Enlace en el pie de página para abrir el Canal PQRS en pestaña aparte -->
             <a href="pqrs.html" target="_blank" rel="noopener noreferrer">Canal PQRS</a>
+            <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
         </div>
         <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD S.A.S. Todos los derechos reservados.</p>
         <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047</p>
@@ -1154,35 +1089,6 @@
                     'Si no se abrió, <a href="' + url + '" target="_blank" rel="noopener">haga clic aquí</a>.');
                 quoteForm.reset();
             });
-
-            // ---------- PQRS ----------
-            const pqrsForm = document.getElementById('pqrsForm');
-            const pqrsBtn = document.getElementById('pqrsBtn');
-            const pqrsMsg = document.getElementById('pqrsMsg');
-
-            pqrsForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                pqrsBtn.disabled = true;
-                pqrsBtn.textContent = 'Enviando...';
-                fetch(WEB3_URL, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: new FormData(pqrsForm)
-                })
-                .then(function (res) { return res.json(); })
-                .then(function (data) {
-                    if (!data.success) throw new Error(data.message || 'error');
-                    showMsg(pqrsMsg, 'ok', '<strong>Recibimos su solicitud.</strong> Le responderemos al correo y teléfono registrados.');
-                    pqrsForm.reset();
-                })
-                .catch(function () {
-                    showMsg(pqrsMsg, 'err', 'No pudimos enviar su solicitud. Intente de nuevo o escríbanos a <a href="mailto:administrativo@avssas.com">administrativo@avssas.com</a>.');
-                })
-                .finally(function () {
-                    pqrsBtn.disabled = false;
-                    pqrsBtn.textContent = 'Enviar PQRS';
-                });
-            });
         })();
     </script>
 
@@ -1229,7 +1135,6 @@
                 ['#cotizar .grid-2 > .card', 'left'],
                 ['#cotizar .form-container', 'right'],
                 ['.faq-item', 'up'],
-                ['#pqrs .form-container', 'up'],
                 ['#contacto .card', 'zoom'],
                 ['footer', 'fade']
             ];
