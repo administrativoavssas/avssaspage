@@ -79,7 +79,7 @@
         .back-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px; color: var(--accent-hover); text-decoration: none; font-weight: 700; transition: color 0.2s; }
         .back-link:hover { text-decoration: underline; color: var(--accent); }
 
-        /* Footer */
+        /* Footer Corregido */
         footer { background: var(--primary); color: var(--white); text-align: center; padding: 45px 20px; margin-top: 80px; border-top: 4px solid var(--accent); width: 100%; }
         footer p { opacity: 0.85; font-size: 0.95rem; margin-bottom: 5px; }
         .footer-links { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
@@ -152,17 +152,16 @@
             </button>
             <nav>
                 <ul id="nav-links">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
-                    <li><a href="#acreditacion">Acreditación ONAC</a></li>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <!-- Enlace superior al Canal PQRS abriéndose en pestaña aparte -->
-                    <li><a href="pqrs.html" target="_blank" rel="noopener noreferrer" >PQRS</a></li>
-                    <li><a href="MisionVision.html" target="_blank" rel="noopener noreferrer" >Misión/Visión</a></li>
-                    <li><a href="privacidad.html" target="_blank" rel="noopener noreferrer" >Privacidad</a></li>
-                    <li><a href="politicas.html" target="_blank" rel="noopener noreferrer" >Políticas</a></li>
-                    <li><a href="#cotizar" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
+                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="index.html#acreditacion">Acreditación ONAC</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="pqrs.html" target="_blank" rel="noopener noreferrer">PQRS</a></li>
+                    <li><a href="MisionVision.html" target="_blank" rel="noopener noreferrer">Misión/Visión</a></li>
+                    <li><a href="privacidad.html" target="_blank" rel="noopener noreferrer" class="active">Privacidad</a></li>
+                    <li><a href="politicas.html" target="_blank" rel="noopener noreferrer">Políticas</a></li>
+                    <li><a href="index.html#contacto" class="btn" style="padding: 8px 18px; font-size: 0.9rem; color: #fff;" data-cta="nav-cotizar">Cotizar</a></li>
                 </ul>
             </nav>
         </div>
@@ -209,22 +208,22 @@
         </section>
     </main>
 
-    <!-- PIE DE PÁGINA UNIFICADO -->
+    <!-- PIE DE PÁGINA CORREGIDO Y UNIFICADO -->
     <footer>
         <div class="footer-links">
-            <a href="#servicios">Servicios</a>
-            <a href="#acreditacion">Acreditación</a>
-            <a href="#faq">Preguntas frecuentes</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="index.html#acreditacion">Acreditación</a>
+            <a href="index.html#faq">Preguntas frecuentes</a>
             <a href="pqrs.html" target="_blank" rel="noopener noreferrer">PQRS</a>
             <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Privacidad</a>
-            <a href="MisionVision.html" target="_blank" rel="noopener noreferrer" >Misión/Visión</a>
-            <a href="politicas.html" target="_blank" rel="noopener noreferrer" >Políticas</a>
+            <a href="MisionVision.html" target="_blank" rel="noopener noreferrer">Misión/Visión</a>
+            <a href="politicas.html" target="_blank" rel="noopener noreferrer">Políticas</a>
         </div>
         <p>&copy; 2026 ALTAS VERIFICACIONES EN SEGURIDAD A.V.S. S.A.S. Todos los derechos reservados.</p>
-        <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047</p>
+        <p>Acreditado ISO/IEC 17020:2012 | ONAC Código 24-OIN-047[cite: 2, 3]</p>
     </footer>
 
-    <!-- SCRIPTS INTERACTIVOS ORIGINALES -->
+    <!-- SCRIPTS INTERACTIVOS -->
     <script>
         (function () {
             'use strict';
@@ -256,27 +255,4 @@
                     ticking = false;
                 };
                 window.addEventListener('scroll', function () {
-                    if (!ticking) { ticking = true; requestAnimationFrame(updateBar); }
-                }, { passive: true });
-                updateBar();
-            }
-
-            if (reduce || !('IntersectionObserver' in window)) return;
-
-            const targets = document.querySelectorAll('[data-reveal]');
-            const io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const kind = el.getAttribute('data-reveal') || 'up';
-                        el.classList.add('rv', 'rv-' + kind, 'in');
-                        io.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.12 });
-
-            targets.forEach(function (el) { io.observe(el); });
-        })();
-    </script>
-</body>
-</html>
+                    if (!ticking)
