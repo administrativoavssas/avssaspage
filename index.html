@@ -1386,6 +1386,17 @@
       const AVSCookies = (function () {
         const STORAGE_KEY = 'avssas_cookie_consent_v1';
 
+        function readStore() {
+          try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+        }
+        function writeStore(value) {
+          try { localStorage.setItem(STORAGE_KEY, value); } catch (e) { /* almacenamiento bloqueado */ }
+        }
+        function showBanner() {
+          const b = document.getElementById('avs-cookie-banner');
+          if (b) b.style.display = 'block';
+        }
+
         function generateConsentId() {
           return 'AVS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
         }
@@ -1412,25 +1423,25 @@
             }
           };
 
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
+          writeStore(JSON.stringify(record));
           document.getElementById('avs-cookie-banner').style.display = 'none';
           document.getElementById('avs-cookie-modal-overlay').style.display = 'none';
           applyScripts(record.preferences);
         }
 
         function init() {
-          const saved = localStorage.getItem(STORAGE_KEY);
+          const saved = readStore();
           if (!saved) {
-            document.getElementById('avs-cookie-banner').style.display = 'block';
-          } else {
-            try {
-              const parsed = JSON.parse(saved);
-              document.getElementById('avs-consent-analytics').checked = parsed.preferences.analytics;
-              document.getElementById('avs-consent-thirdparty').checked = parsed.preferences.thirdParty;
-              applyScripts(parsed.preferences);
-            } catch (e) {
-              document.getElementById('avs-cookie-banner').style.display = 'block';
-            }
+            showBanner();
+            return;
+          }
+          try {
+            const parsed = JSON.parse(saved);
+            document.getElementById('avs-consent-analytics').checked = !!parsed.preferences.analytics;
+            document.getElementById('avs-consent-thirdparty').checked = !!parsed.preferences.thirdParty;
+            applyScripts(parsed.preferences);
+          } catch (e) {
+            showBanner();
           }
         }
 
@@ -1456,7 +1467,12 @@
         };
       })();
 
-      document.addEventListener('DOMContentLoaded', AVSCookies.init);
+      window.AVSCookies = AVSCookies;
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', AVSCookies.init);
+      } else {
+        AVSCookies.init();
+      }
     </script>
 
     <!-- Animaciones de aparición al hacer scroll -->
